@@ -1,0 +1,12 @@
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\bin\Debug\childApp.exe.config
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\bin\Debug\childApp.exe
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\bin\Debug\childApp.pdb
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.csprojResolveAssemblyReference.cache
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.Form1.resources
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.Properties.Resources.resources
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.csproj.GenerateResource.Cache
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.exe
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.pdb
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\bin\Debug\npgsql.dll
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\bin\Debug\npgsql.xml
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.add_user.resources
