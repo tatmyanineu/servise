@@ -10,3 +10,5 @@ c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\
 c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\bin\Debug\npgsql.dll
 c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\bin\Debug\npgsql.xml
 c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.add_user.resources
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.all_user.resources
+c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.searchForm.resources

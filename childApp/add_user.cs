@@ -170,11 +170,16 @@ namespace childApp
                 }
                 catch
                 {
-                    MessageBox.Show("НЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕ");
+                    MessageBox.Show("ошбика");
                 }
 
             }
             conn.Close(); //Закрываем соединение.
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
 
         }
     }

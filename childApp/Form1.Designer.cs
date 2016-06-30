@@ -111,6 +111,7 @@
             this.открытьВсеЛСToolStripMenuItem.Name = "открытьВсеЛСToolStripMenuItem";
             this.открытьВсеЛСToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.открытьВсеЛСToolStripMenuItem.Text = "Открыть все ЛС";
+            this.открытьВсеЛСToolStripMenuItem.Click += new System.EventHandler(this.открытьВсеЛСToolStripMenuItem_Click);
             // 
             // добавитьЛСToolStripMenuItem
             // 

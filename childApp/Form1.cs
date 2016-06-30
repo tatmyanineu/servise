@@ -39,5 +39,20 @@ namespace childApp
             // Display the new form.
             newMDIChild.Show();
         }
+
+        private void открытьВсеЛСToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            all_user newMDIChild = new all_user();
+            // Set the Parent Form of the Child window.
+            newMDIChild.MdiParent = this;
+            double w = this.Width;
+            int h = this.Height;
+            newMDIChild.Width = Convert.ToInt16(w* 0.95);
+            newMDIChild.Height = Convert.ToInt16(h * 0.90);
+
+
+            // Display the new form.
+            newMDIChild.Show();
+        }
     }
 }
