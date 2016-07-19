@@ -12,3 +12,10 @@ c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\
 c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.add_user.resources
 c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.all_user.resources
 c:\users\евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.searchForm.resources
+C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.period.resources
+C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.charge.resources
+C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.load_pay.resources
+C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.pay.resources
+C:\Users\Евгений\Documents\Visual Studio 2012\Projects\childApp\childApp\obj\Debug\childApp.all_charge.resources
+C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.edit_user.resources
+C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.close_user.resources

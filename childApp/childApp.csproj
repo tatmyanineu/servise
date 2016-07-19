@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>browser.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="npgsql, Version=3.1.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\npgsql.3.1.5\lib\net45\npgsql.dll</HintPath>
@@ -54,17 +57,59 @@
     <Compile Include="add_user.Designer.cs">
       <DependentUpon>add_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="all_charge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="all_charge.Designer.cs">
+      <DependentUpon>all_charge.cs</DependentUpon>
+    </Compile>
     <Compile Include="all_user.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="all_user.Designer.cs">
       <DependentUpon>all_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="charge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="charge.Designer.cs">
+      <DependentUpon>charge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="close_user.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="close_user.Designer.cs">
+      <DependentUpon>close_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="edit_user.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="edit_user.Designer.cs">
+      <DependentUpon>edit_user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="load_pay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="load_pay.Designer.cs">
+      <DependentUpon>load_pay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pay.Designer.cs">
+      <DependentUpon>pay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="period.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="period.Designer.cs">
+      <DependentUpon>period.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,11 +122,32 @@
     <EmbeddedResource Include="add_user.resx">
       <DependentUpon>add_user.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="all_charge.resx">
+      <DependentUpon>all_charge.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="all_user.resx">
       <DependentUpon>all_user.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="charge.resx">
+      <DependentUpon>charge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="close_user.resx">
+      <DependentUpon>close_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="edit_user.resx">
+      <DependentUpon>edit_user.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="load_pay.resx">
+      <DependentUpon>load_pay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pay.resx">
+      <DependentUpon>pay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="period.resx">
+      <DependentUpon>period.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -108,6 +174,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="browser.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.закрытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.окноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.лицевыеСчетаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.открытьВсеЛСToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьЛСToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.начисленияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.периодыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.печатьКвитанцийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.открытьВсеЛСToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьЛСToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.оплатыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузкаОплатыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.окноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +50,7 @@
             this.файлToolStripMenuItem,
             this.лицевыеСчетаToolStripMenuItem,
             this.начисленияToolStripMenuItem,
+            this.оплатыToolStripMenuItem,
             this.окноToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.MdiWindowListItem = this.окноToolStripMenuItem;
@@ -67,14 +71,8 @@
             // закрытьToolStripMenuItem
             // 
             this.закрытьToolStripMenuItem.Name = "закрытьToolStripMenuItem";
-            this.закрытьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.закрытьToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.закрытьToolStripMenuItem.Text = "Закрыть";
-            // 
-            // окноToolStripMenuItem
-            // 
-            this.окноToolStripMenuItem.Name = "окноToolStripMenuItem";
-            this.окноToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.окноToolStripMenuItem.Text = "Окно";
             // 
             // лицевыеСчетаToolStripMenuItem
             // 
@@ -84,27 +82,6 @@
             this.лицевыеСчетаToolStripMenuItem.Name = "лицевыеСчетаToolStripMenuItem";
             this.лицевыеСчетаToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
             this.лицевыеСчетаToolStripMenuItem.Text = "Лицевые счета";
-            // 
-            // начисленияToolStripMenuItem
-            // 
-            this.начисленияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.периодыToolStripMenuItem,
-            this.печатьКвитанцийToolStripMenuItem});
-            this.начисленияToolStripMenuItem.Name = "начисленияToolStripMenuItem";
-            this.начисленияToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
-            this.начисленияToolStripMenuItem.Text = "Начисления";
-            // 
-            // периодыToolStripMenuItem
-            // 
-            this.периодыToolStripMenuItem.Name = "периодыToolStripMenuItem";
-            this.периодыToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.периодыToolStripMenuItem.Text = "Периоды";
-            // 
-            // печатьКвитанцийToolStripMenuItem
-            // 
-            this.печатьКвитанцийToolStripMenuItem.Name = "печатьКвитанцийToolStripMenuItem";
-            this.печатьКвитанцийToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.печатьКвитанцийToolStripMenuItem.Text = "Печать квитанций";
             // 
             // открытьВсеЛСToolStripMenuItem
             // 
@@ -120,17 +97,62 @@
             this.добавитьЛСToolStripMenuItem.Text = "Добавить ЛС";
             this.добавитьЛСToolStripMenuItem.Click += new System.EventHandler(this.добавитьЛСToolStripMenuItem_Click);
             // 
+            // начисленияToolStripMenuItem
+            // 
+            this.начисленияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.периодыToolStripMenuItem,
+            this.печатьКвитанцийToolStripMenuItem});
+            this.начисленияToolStripMenuItem.Name = "начисленияToolStripMenuItem";
+            this.начисленияToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.начисленияToolStripMenuItem.Text = "Начисления";
+            // 
+            // периодыToolStripMenuItem
+            // 
+            this.периодыToolStripMenuItem.Name = "периодыToolStripMenuItem";
+            this.периодыToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.периодыToolStripMenuItem.Text = "Периоды";
+            this.периодыToolStripMenuItem.Click += new System.EventHandler(this.периодыToolStripMenuItem_Click);
+            // 
+            // печатьКвитанцийToolStripMenuItem
+            // 
+            this.печатьКвитанцийToolStripMenuItem.Name = "печатьКвитанцийToolStripMenuItem";
+            this.печатьКвитанцийToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.печатьКвитанцийToolStripMenuItem.Text = "Печать квитанций";
+            // 
+            // оплатыToolStripMenuItem
+            // 
+            this.оплатыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.загрузкаОплатыToolStripMenuItem});
+            this.оплатыToolStripMenuItem.Name = "оплатыToolStripMenuItem";
+            this.оплатыToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.оплатыToolStripMenuItem.Text = "Оплаты";
+            // 
+            // загрузкаОплатыToolStripMenuItem
+            // 
+            this.загрузкаОплатыToolStripMenuItem.Name = "загрузкаОплатыToolStripMenuItem";
+            this.загрузкаОплатыToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.загрузкаОплатыToolStripMenuItem.Text = "Загрузка оплаты";
+            this.загрузкаОплатыToolStripMenuItem.Click += new System.EventHandler(this.загрузкаОплатыToolStripMenuItem_Click);
+            // 
+            // окноToolStripMenuItem
+            // 
+            this.окноToolStripMenuItem.Name = "окноToolStripMenuItem";
+            this.окноToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.окноToolStripMenuItem.Text = "Окно";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 542);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Сервисное обслуживание";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -150,6 +172,8 @@
         private System.Windows.Forms.ToolStripMenuItem начисленияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem периодыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem печатьКвитанцийToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem оплатыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузкаОплатыToolStripMenuItem;
     }
 }
 

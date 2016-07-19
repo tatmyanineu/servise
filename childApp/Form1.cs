@@ -54,5 +54,31 @@ namespace childApp
             // Display the new form.
             newMDIChild.Show();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void периодыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            period newMDICheild = new period();
+            newMDICheild.MdiParent = this;
+            // Display the new form.
+            newMDICheild.Show();
+        }
+
+        private void загрузкаОплатыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            double w = this.Width;
+            int h = this.Height;
+            load_pay newMDICheild = new load_pay();
+            newMDICheild.MdiParent = this;
+            // Display the new form.
+            newMDICheild.Show();
+            newMDICheild.Width = Convert.ToInt16(w * 0.95);
+            newMDICheild.Height = Convert.ToInt16(h * 0.90);
+        }
     }
 }
