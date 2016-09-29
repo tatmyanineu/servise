@@ -19,3 +19,9 @@ C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\
 C:\Users\Евгений\Documents\Visual Studio 2012\Projects\childApp\childApp\obj\Debug\childApp.all_charge.resources
 C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.edit_user.resources
 C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.close_user.resources
+C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.PrintTo.resources
+C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.forPrintPeriod.resources
+C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.forPrintGroup.resources
+C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.services.resources
+C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.counters.resources
+C:\Users\Евгений\documents\visual studio 2012\Projects\childApp\childApp\obj\Debug\childApp.add_services.resources

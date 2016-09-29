@@ -35,12 +35,16 @@
     <ApplicationIcon>browser.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FastReport, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c" />
+    <Reference Include="FastReport.Bars, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c" />
+    <Reference Include="FastReport.Editor, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c" />
     <Reference Include="npgsql, Version=3.1.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\npgsql.3.1.5\lib\net45\npgsql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="add_services.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="add_services.Designer.cs">
+      <DependentUpon>add_services.cs</DependentUpon>
+    </Compile>
     <Compile Include="add_user.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +91,12 @@
     <Compile Include="close_user.Designer.cs">
       <DependentUpon>close_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="counters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="counters.Designer.cs">
+      <DependentUpon>counters.cs</DependentUpon>
+    </Compile>
     <Compile Include="edit_user.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +108,18 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forPrintGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forPrintGroup.Designer.cs">
+      <DependentUpon>forPrintGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forPrintPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forPrintPeriod.Designer.cs">
+      <DependentUpon>forPrintPeriod.cs</DependentUpon>
     </Compile>
     <Compile Include="load_pay.cs">
       <SubType>Form</SubType>
@@ -111,6 +139,12 @@
     <Compile Include="period.Designer.cs">
       <DependentUpon>period.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrintTo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintTo.Designer.cs">
+      <DependentUpon>PrintTo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="searchForm.cs">
@@ -119,6 +153,15 @@
     <Compile Include="searchForm.Designer.cs">
       <DependentUpon>searchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="services.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="services.Designer.cs">
+      <DependentUpon>services.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="add_services.resx">
+      <DependentUpon>add_services.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="add_user.resx">
       <DependentUpon>add_user.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,11 +177,20 @@
     <EmbeddedResource Include="close_user.resx">
       <DependentUpon>close_user.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="counters.resx">
+      <DependentUpon>counters.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="edit_user.resx">
       <DependentUpon>edit_user.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forPrintGroup.resx">
+      <DependentUpon>forPrintGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forPrintPeriod.resx">
+      <DependentUpon>forPrintPeriod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="load_pay.resx">
       <DependentUpon>load_pay.cs</DependentUpon>
@@ -148,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="period.resx">
       <DependentUpon>period.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintTo.resx">
+      <DependentUpon>PrintTo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -160,6 +215,9 @@
     </Compile>
     <EmbeddedResource Include="searchForm.resx">
       <DependentUpon>searchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="services.resx">
+      <DependentUpon>services.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

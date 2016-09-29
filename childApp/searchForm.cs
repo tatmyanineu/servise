@@ -60,24 +60,15 @@ namespace childApp
         private void button1_Click(object sender, EventArgs e)
         {
             string street = "";
-
-            if (key_street == null)
-            {
-                street = "";
-            }
-            else
-            {
-                int k = Convert.ToInt32(key_street);
-                street = adres[k]["street"];
-            }
-
+            
+            street = comboBox1.Text;
             string ls = textBox1.Text;
 
             string house = textBox3.Text;
             string flat = textBox4.Text;
-
-            frm.search_table(ls, street, house, flat);
             this.Close();
+            frm.search_table(ls, street, house, flat);
+           
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -88,6 +79,19 @@ namespace childApp
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.ToUpper(e.KeyChar);
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                System.Windows.Forms.SendKeys.Send("{TAB}");
+            }
         }
     }
 }

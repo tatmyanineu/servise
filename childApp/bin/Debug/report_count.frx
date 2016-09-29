@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="06/23/2016 11:58:40" ReportInfo.Modified="06/23/2016 16:04:44" ReportInfo.CreatorVersion="2016.1.0.0">
+  <Dictionary>
+    <TableDataSource Name="groupCount" ReferenceName="groupCount" DataType="System.Int32" Enabled="true">
+      <Column Name="Group" DataType="System.String"/>
+      <Column Name="Count" DataType="System.Int32"/>
+    </TableDataSource>
+    <Parameter Name="name" DataType="System.String"/>
+    <Total Name="Total" Expression="[groupCount.Count]" Evaluator="Data1" PrintOn="DataFooter1"/>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="94.5" PrintOn="FirstPage">
+      <TextObject Name="Text5" Left="160.65" Top="9.45" Width="349.65" Height="18.9" Text="Отчет по количеству квитанций" HorzAlign="Center" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text8" Left="9.45" Top="47.25" Width="292.95" Height="18.9" Text="Квитанции за  [name]" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="120.07" Width="718.2" Height="18.9" DataSource="groupCount">
+      <TextObject Name="Text1" Width="576.45" Height="18.9" Border.Lines="All" Border.Width="0.25" Text="[groupCount.Group]"/>
+      <TextObject Name="Text3" Left="576.45" Width="132.3" Height="18.9" Border.Lines="All" Border.Width="0.25" Text="[groupCount.Count]"/>
+      <DataHeaderBand Name="DataHeader1" Top="97.83" Width="718.2" Height="18.9">
+        <TextObject Name="Text2" Width="576.45" Height="18.9" Border.Lines="All" Border.Width="0.25" Text="Название группы" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text4" Left="576.45" Width="132.3" Height="18.9" Border.Lines="All" Border.Width="0.25" Text="Количество" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataFooterBand Name="DataFooter1" Top="142.3" Width="718.2" Height="28.35">
+        <TextObject Name="Text6" Left="576.45" Width="132.3" Height="18.9" Border.Lines="All" Border.Width="0.25" Text="[Total]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text7" Width="576.45" Height="18.9" Border.Lines="All" Border.Width="0.25" Text="Всего квитанций" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      </DataFooterBand>
+    </DataBand>
+  </ReportPage>
+</Report>

@@ -97,5 +97,13 @@ namespace childApp
             // Display the new form.
             newMDICheild.Show();
         }
+
+        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

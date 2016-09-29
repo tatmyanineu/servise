@@ -121,7 +121,7 @@ namespace childApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string[] dirs = Directory.GetFiles(@"C:\folder\11501", "*.txt", SearchOption.AllDirectories);
+            string[] dirs = Directory.GetFiles(@"C:\invest\pays\11501", "*.txt", SearchOption.AllDirectories);
             //Console.WriteLine("The number of files starting with c is {0}.", dirs.Length);
             foreach (string dir in dirs)
             {
@@ -133,11 +133,11 @@ namespace childApp
         private void button4_Click(object sender, EventArgs e)
         {
             char delimiter = ';';
-            int i = 0;
             int all_ls = 0;
             double summa = 0;
-
+            int id = 0;
             int max_id = 0;
+
             DateTime date_now = DateTime.Today;
             NpgsqlCommand search_id = new NpgsqlCommand("SELECT max(id) From public.pay", conn);
             conn.Open();
@@ -148,14 +148,16 @@ namespace childApp
             }
 
             conn.Close();
-
+            id = max_id;
             for (int k = 0; k < textBox3.Lines.Length - 1; k++)
             {
                 textBox2.AppendText("шаг " + k + " Обрабатываем файл ->" + textBox3.Lines[k] + "\n");
                 textBox2.AppendText("\n");
                 string numb = null;
                 int kol_ls = 0;
-                StreamReader reader = new StreamReader(@"C:\folder\11501\" + textBox3.Lines[k] + ".txt", Encoding.GetEncoding("cp866"));
+                int i = 0;
+                
+                StreamReader reader = new StreamReader(@"C:\invest\pays\11501\" + textBox3.Lines[k] + ".txt", Encoding.GetEncoding("cp866"));
                 while (true)
                 {
 
@@ -168,7 +170,7 @@ namespace childApp
                         var reestr = Regex.Match(temp, @"[0-9][0-9]+(?:\.[0-9]*)?");
                         numb = reestr.ToString();
                     }
-
+                    numb = textBox3.Lines[k];
                     if (temp.Substring(0, 1) != "#")
                     {
                         String[] substrings = temp.Split(delimiter);
@@ -201,12 +203,12 @@ namespace childApp
                         DateTime dt = DateTime.Parse(date);
                         kol_ls++;
                         summa += Convert.ToDouble(summ);
-                        /*conn.Open();
+                        conn.Open();
                         
-                        int id = max_id + kol_ls;
-                        NpgsqlCommand add_pay = new NpgsqlCommand("INSERT INTO public.pay(id, acc_id, date_pay, summa, text, reestr, date_create) VALUES (" + id + " ," + acc_code + ", '" + dt.ToString() + "', " + summ.Replace(',', '.') + ", '" + plat + "', '" + numb + "', '"+date_now+"')", conn);
+                        id +=kol_ls;
+                        NpgsqlCommand add_pay = new NpgsqlCommand("INSERT INTO public.pay (id, acc_id, date_pay, summa, text, reestr, date_create) VALUES (" + id + " ," + acc_code + ", '" + dt.ToString() + "', " + summ.Replace(',', '.') + ", '" + plat + "', '" + numb + "', '"+date_now+"')", conn);
                         add_pay.ExecuteNonQuery();
-                        conn.Close();*/
+                        conn.Close();
 
                         //textBox2.AppendText(temp + "\n");
 

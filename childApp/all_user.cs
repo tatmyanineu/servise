@@ -14,6 +14,7 @@ namespace childApp
     public partial class all_user : Form
     {
         public static string acc_code;
+
         //NpgsqlConnection conn = new NpgsqlConnection("Server=193.138.131.70;Port=5432;User Id=postgres;Password=postgres;Database=Servise;");
         NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=postgres;Database=Servise;");
         public int ls = 0;
@@ -31,24 +32,26 @@ namespace childApp
         {
 
             DataTable dt = new DataTable();
-            NpgsqlCommand comm = new NpgsqlCommand("SELECT "
-                                                      + "public.acc_info.acc_id, "
-                                                       + "public.acc_info.owner, "
-                                                      + "places_cnt2.district, "
-                                                      + "places_cnt1.name, "
-                                                      + "places_cnt2.name, "
-                                                      + "public.acc_info.flat, "
-                                                      + "public.acc_info.date_open, "
-                                                      + "public.acc_info.acc_close, "
-                                                      + "public.acc_info.contakt, "
-                                                      + "public.tarif.tarif_taxa, "
-                                                      + "public.tarif.tarif_text "
-                                                    + "FROM "
-                                                      + "public.places_cnt places_cnt1 "
-                                                      + "INNER JOIN public.places_cnt ON (places_cnt1.parent_id = public.places_cnt.plc_id) "
-                                                      + "INNER JOIN public.places_cnt places_cnt2 ON (places_cnt1.plc_id = places_cnt2.parent_id) "
-                                                      + "INNER JOIN public.acc_info ON (places_cnt2.plc_id = public.acc_info.plc_id) "
-                                                      + "INNER JOIN public.tarif ON (public.acc_info.tarif_if = public.tarif.id)", conn);
+            string comm_text = @"SELECT DISTINCT 
+                                  public.acc_info.acc_id,
+                                  public.acc_info.owner,
+                                  places_cnt2.district,
+                                  places_cnt1.name,
+                                  places_cnt2.name,
+                                  public.acc_info.flat,
+                                  public.acc_info.date_open,
+                                  public.acc_info.acc_close,
+                                  public.acc_info.contakt
+                                FROM
+                                  public.places_cnt places_cnt1
+                                  INNER JOIN public.places_cnt ON (places_cnt1.parent_id = public.places_cnt.plc_id)
+                                  INNER JOIN public.places_cnt places_cnt2 ON (places_cnt1.plc_id = places_cnt2.parent_id)
+                                  INNER JOIN public.acc_info ON (places_cnt2.plc_id = public.acc_info.plc_id)
+                                ORDER BY
+                                  places_cnt1.name,
+                                  places_cnt2.name,
+                                  public.acc_info.flat";
+            NpgsqlCommand comm = new NpgsqlCommand(comm_text, conn);
             conn.Open(); //Открываем соединение.
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(comm);
             da.Fill(dt);
@@ -81,12 +84,6 @@ namespace childApp
             dataGridView1.Columns[8].Width = 200;
             dataGridView1.Columns[8].HeaderText = "Контактная информация";
 
-            dataGridView1.Columns[9].Width = 80;
-            dataGridView1.Columns[9].HeaderText = "Тариф(ставка)";
-
-            dataGridView1.Columns[10].Width = 190;
-            dataGridView1.Columns[10].HeaderText = "Тариф";
-
         }
 
 
@@ -101,15 +98,12 @@ namespace childApp
                                                       + "public.acc_info.flat, "
                                                       + "public.acc_info.date_open, "
                                                       + "public.acc_info.acc_close, "
-                                                      + "public.acc_info.contakt, "
-                                                      + "public.tarif.tarif_taxa, "
-                                                      + "public.tarif.tarif_text "
+                                                      + "public.acc_info.contakt "
                                                     + "FROM "
                                                       + "public.places_cnt places_cnt1 "
                                                       + "INNER JOIN public.places_cnt ON (places_cnt1.parent_id = public.places_cnt.plc_id) "
                                                       + "INNER JOIN public.places_cnt places_cnt2 ON (places_cnt1.plc_id = places_cnt2.parent_id) "
-                                                      + "INNER JOIN public.acc_info ON (places_cnt2.plc_id = public.acc_info.plc_id) "
-                                                      + "INNER JOIN public.tarif ON (public.acc_info.tarif_if = public.tarif.id) WHERE ";
+                                                      + "INNER JOIN public.acc_info ON (places_cnt2.plc_id = public.acc_info.plc_id) WHERE ";
 
 
             if (ls != "" & street == "" & house == "" & flat == "")
@@ -119,20 +113,20 @@ namespace childApp
 
             if (ls == "" & street != "" & house != "" & flat != "")
             {
-                sql += "  public.acc_info.flat = '" + flat + "' AND "
-                         + " places_cnt2.name = '" + house + "' AND "
-                         + " places_cnt1.name = '" + street + "' ";
+                sql += "  public.acc_info.flat LIKE '%" + flat + "%' AND "
+                         + " places_cnt2.name LIKE '%" + house + "%' AND "
+                         + " places_cnt1.name LIKE '%" + street + "%' ";
             }
 
             if (ls == "" & street != "" & house != "" & flat == "")
             {
-                sql +=   " places_cnt2.name = '" + house + "' AND "
-                         + " places_cnt1.name = '" + street + "' ";
+                sql += " places_cnt2.name LIKE '%" + house + "%' AND "
+                         + " places_cnt1.name LIKE '%" + street + "%' ";
             }
 
             if (ls == "" & street != "" & house == "" & flat == "")
             {
-                sql +=  " places_cnt1.name = '" + street + "' ";
+                sql += " places_cnt1.name LIKE '%" + street + "%' ";
             }
 
             DataTable dt = new DataTable();
@@ -170,6 +164,11 @@ namespace childApp
             {
                 update_main_table();
             }
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
@@ -190,7 +189,7 @@ namespace childApp
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-             DataGridViewCell cell = null;
+            DataGridViewCell cell = null;
 
             foreach (DataGridViewCell selectedCell in dataGridView1.SelectedCells)
             {
@@ -209,6 +208,7 @@ namespace childApp
                 ls = Convert.ToInt32(row.Cells[0].Value);
 
                 acc_code = row.Cells[0].Value.ToString();
+                this.Text = "Просмотр лицевых счетов. Выбран ЛС  - " + acc_code; 
             }
         }
 
@@ -217,10 +217,11 @@ namespace childApp
             if (acc_code != null)
             {
 
-            pay newMDICheild = new pay();
-            newMDICheild.MdiParent = this.MdiParent;
-            // Display the new form.
-            newMDICheild.Show();
+                pay newMDICheild = new pay();
+                newMDICheild.MdiParent = this.MdiParent;
+                // Display the new form.
+                newMDICheild.WindowState = System.Windows.Forms.FormWindowState.Normal;
+                newMDICheild.Show();
             }
             else
             {
@@ -232,7 +233,7 @@ namespace childApp
         {
             if (acc_code != null)
             {
-                all_charge newMDICheild = new all_charge();
+                services newMDICheild = new services();
                 newMDICheild.MdiParent = this.MdiParent;
                 // Display the new form.
                 newMDICheild.Show();
@@ -247,10 +248,9 @@ namespace childApp
         {
             if (acc_code != null)
             {
-                edit_user newMDICheild = new edit_user();
-                newMDICheild.MdiParent = this.MdiParent;
-                // Display the new form.
-                newMDICheild.Show();
+                edit_user frm = new edit_user();
+                frm.Owner = this;
+                frm.Show();
             }
             else
             {
@@ -262,7 +262,21 @@ namespace childApp
         {
             if (acc_code != null)
             {
-                close_user newMDICheild = new close_user();
+                close_user frm = new close_user();
+                frm.Owner = this;
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Лицевой счет не выбран");
+            }
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            if (acc_code != null)
+            {
+                forPrintPeriod newMDICheild = new forPrintPeriod();
                 newMDICheild.MdiParent = this.MdiParent;
                 // Display the new form.
                 newMDICheild.Show();
@@ -272,5 +286,21 @@ namespace childApp
                 MessageBox.Show("Лицевой счет не выбран");
             }
         }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            if (acc_code != null)
+            {
+                counters newMDICheild = new counters();
+                newMDICheild.MdiParent = this.MdiParent;
+                // Display the new form.
+                newMDICheild.Show();
+            }
+            else
+            {
+                MessageBox.Show("Лицевой счет не выбран");
+            }
+        }
+
     }
 }

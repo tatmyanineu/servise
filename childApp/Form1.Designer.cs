@@ -41,7 +41,11 @@
             this.оплатыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузкаОплатыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.окноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.дизайнерОтчетовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.квитанцияДляЛСToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.report1 = new FastReport.Report();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.report1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -51,6 +55,7 @@
             this.лицевыеСчетаToolStripMenuItem,
             this.начисленияToolStripMenuItem,
             this.оплатыToolStripMenuItem,
+            this.дизайнерОтчетовToolStripMenuItem,
             this.окноToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.MdiWindowListItem = this.окноToolStripMenuItem;
@@ -118,6 +123,7 @@
             this.печатьКвитанцийToolStripMenuItem.Name = "печатьКвитанцийToolStripMenuItem";
             this.печатьКвитанцийToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.печатьКвитанцийToolStripMenuItem.Text = "Печать квитанций";
+            this.печатьКвитанцийToolStripMenuItem.Click += new System.EventHandler(this.печатьКвитанцийToolStripMenuItem_Click);
             // 
             // оплатыToolStripMenuItem
             // 
@@ -140,6 +146,25 @@
             this.окноToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.окноToolStripMenuItem.Text = "Окно";
             // 
+            // дизайнерОтчетовToolStripMenuItem
+            // 
+            this.дизайнерОтчетовToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.квитанцияДляЛСToolStripMenuItem});
+            this.дизайнерОтчетовToolStripMenuItem.Name = "дизайнерОтчетовToolStripMenuItem";
+            this.дизайнерОтчетовToolStripMenuItem.Size = new System.Drawing.Size(118, 20);
+            this.дизайнерОтчетовToolStripMenuItem.Text = "Дизайнер отчетов";
+            // 
+            // квитанцияДляЛСToolStripMenuItem
+            // 
+            this.квитанцияДляЛСToolStripMenuItem.Name = "квитанцияДляЛСToolStripMenuItem";
+            this.квитанцияДляЛСToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.квитанцияДляЛСToolStripMenuItem.Text = "Квитанция для ЛС";
+            this.квитанцияДляЛСToolStripMenuItem.Click += new System.EventHandler(this.квитанцияДляЛСToolStripMenuItem_Click);
+            // 
+            // report1
+            // 
+            this.report1.ReportResourceString = resources.GetString("report1.ReportResourceString");
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,6 +180,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.report1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,6 +200,9 @@
         private System.Windows.Forms.ToolStripMenuItem печатьКвитанцийToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem оплатыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem загрузкаОплатыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem дизайнерОтчетовToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem квитанцияДляЛСToolStripMenuItem;
+        private FastReport.Report report1;
     }
 }
 

@@ -46,13 +46,21 @@ namespace childApp
 
 
             DataTable dt = new DataTable();
-            NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT * FROM public.pay WHERE acc_id = "+all_user.acc_code+"", conn);
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT * FROM public.pay WHERE acc_id = " + all_user.acc_code + " ORDER BY date_pay", conn);
 
             conn.Open();
             da.Fill(dt);
             conn.Close();
 
             dataGridView1.DataSource = dt;
+        }
+
+        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

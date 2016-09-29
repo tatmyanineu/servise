@@ -17,8 +17,7 @@ namespace childApp
         NpgsqlConnection conn = new NpgsqlConnection("Server=localhost;Port=5432;User Id=postgres;Password=postgres;Database=Servise;");
 
         int key_street = 0;
-        int key_tarif = 0;
-        int tarif = 0;
+        public int g = 0;
         Dictionary<int, Dictionary<string, string>> adres = new Dictionary<int, Dictionary<string, string>>();
 
         public edit_user()
@@ -29,26 +28,6 @@ namespace childApp
         private void edit_user_Load(object sender, EventArgs e)
         {
             this.Text += " : " + all_user.acc_code;
-
-            NpgsqlCommand tarif = new NpgsqlCommand("SELECT * FROM  public.tarif", conn);
-            conn.Open(); //Открываем соединение.
-            NpgsqlDataReader reader2;
-            reader2 = tarif.ExecuteReader();
-            while (reader2.Read())
-            {
-                try
-                {
-                    comboBox2.Items.Add(reader2[4].ToString() + " " + reader2[2].ToString() + "руб.");
-                }
-                catch
-                {
-                    MessageBox.Show("ошбика");
-                }
-
-            }
-            conn.Close(); //Закрываем соединение.
-                            int g = 0;
-
 
             NpgsqlCommand acc_info = new NpgsqlCommand("SELECT DISTINCT  "
                                          + " public.acc_info.acc_id, "
@@ -78,9 +57,7 @@ namespace childApp
                 comboBox1.Text = acc_reader[2].ToString() + " " + acc_reader[3].ToString();
                 textBox2.Text = acc_reader[4].ToString();
                 textBox3.Text = acc_reader[5].ToString();
-
-                g = Convert.ToInt16(acc_reader[9])-1;
-                comboBox2.SelectedIndex =g;
+                textBox5.Text = acc_reader[10].ToString();
             }
             //tarif = g;
             conn.Close();
@@ -108,6 +85,7 @@ namespace childApp
                     comboBox1.Items.Add(reader[2].ToString() + " " + reader[3].ToString());
                     dic.Add("street", reader[0].ToString());
                     dic.Add("id", reader[1].ToString());
+                    dic.Add("name", reader[2].ToString() + " " + reader[3].ToString());
                     adres.Add(i, dic);
                     i++;
                 }
@@ -119,76 +97,29 @@ namespace childApp
             }
             conn.Close(); //Закрываем соединение.
 
-
-
-          
+            DataTable dt_counter = new DataTable();
+            NpgsqlDataAdapter counter = new NpgsqlDataAdapter("SELECT * FROM public.counter WHERE acc_id =" + all_user.acc_code + "", conn);
+            conn.Open();
+            counter.Fill(dt_counter);
+            dataGridView1.DataSource = dt_counter;
+            conn.Close();
 
         }
 
 
         public void add_new_ls(long plc_id)
         {
-            int id_tarif = 0;
-            id_tarif = comboBox2.SelectedIndex + 1;
+
             button1.Enabled = false;
            // MessageBox.Show(id_tarif.ToString());
-            if (textBox1.Text != "" && comboBox1.Text != "" && textBox2.Text != "" & textBox3.Text != "" && comboBox2.Text != "")
+            if (textBox1.Text != "" && comboBox1.Text != "" && textBox2.Text != "" & textBox3.Text != "")
             {
 
                 conn.Open();
-                NpgsqlCommand edit_user = new NpgsqlCommand("UPDATE public.acc_info SET  plc_id=" + plc_id + ", flat='" + textBox3.Text + "', owner='" + textBox1.Text + "', contakt='" + textBox5.Text + "', tarif_if=" + id_tarif + " "
+                NpgsqlCommand edit_user = new NpgsqlCommand("UPDATE public.acc_info SET  plc_id=" + plc_id + ", flat='" + textBox3.Text + "', owner='" + textBox1.Text + "', contakt='" + textBox5.Text + "'  "
                                                             + " WHERE acc_id=" + all_user.acc_code + "", conn);
                 edit_user.ExecuteNonQuery();
                 conn.Close();
-                /*
-                NpgsqlCommand max_charge = new NpgsqlCommand("SELECT max(id) FROM public.charge", conn);
-                conn.Open();
-                NpgsqlDataReader reader_charge = max_charge.ExecuteReader();
-                while (reader_charge.Read())
-                {
-                    max_id_charge = Convert.ToInt32(reader_charge[0]);
-                }
-                conn.Close();
-
-
-                if (max_id != 0)
-                {
-
-                    int saldo_out = 0;
-                    int maket = 0;
-                    DateTime now = DateTime.Today;
-                    saldo_out = ((now.Year - dateTimePicker1.Value.Year) * 12) + now.Month - dateTimePicker1.Value.Month; //колво месяцев для расчета
-
-                    saldo_out++;
-                    maket = (saldo_out - 1) * tarif;
-                    saldo_out = saldo_out * tarif;
-
-
-                    now = new DateTime(now.Year, now.Month, 01);
-
-
-                    //MessageBox.Show(now.ToString());
-
-                    max_id++;
-                    max_id_charge++;
-                    ls = max_id;
-                    NpgsqlCommand add_charge = new NpgsqlCommand("insert into charge (id, acc_id, date_period, tarif_id, charge, pay, saldo_in, saldo_out, date_create, maket) values (" + max_id_charge + ", " + max_id + ", '" + now.ToString("dd.MM.yyyy") + "', " + key_tarif + ", '" + tarif + "', '0', '0','" + saldo_out + "', '" + now.ToString("yyyy-MM-dd") + "', '" + maket + "')", conn);
-                    conn.Open();
-                    add_charge.ExecuteNonQuery();
-                    conn.Close();
-
-
-                    NpgsqlCommand add_ls = new NpgsqlCommand("INSERT INTO public.acc_info(acc_id, plc_id, flat, date_open, date_close, acc_close, owner, contakt, tarif_if) "
-                    + " VALUES (" + max_id + ", " + plc_id + ", '" + textBox3.Text + "', '" + dateTimePicker1.Value.ToString("dd.MM.yyyy") + "', '" + dateTimePicker2.Value.ToString("dd.MM.yyyy") + "', '', '" + textBox1.Text + "', '" + textBox5.Text + "', " + key_tarif + ");", conn);
-                    conn.Open();
-                    add_ls.ExecuteNonQuery();
-                    conn.Close();
-                    if (add_ls.Statements != null && add_charge.Statements != null)
-                    {
-                        MessageBox.Show("Лицевйо счет добавлен");
-                    }
-                }*/
-
             }
 
         }
@@ -197,7 +128,17 @@ namespace childApp
         private void button1_Click(object sender, EventArgs e)
         {
             long max_id = 0;
-            string street_name = adres[key_street]["street"].ToString();
+            string street_name = "";
+            string plc_id ="";
+            for (int a = 0; a < adres.Count; a++)
+            {
+                if (comboBox1.Text == adres[a]["name"])
+                {
+                    street_name = adres[a]["street"];
+                    plc_id = adres[a]["id"];
+                }
+            }
+
 
             NpgsqlCommand search_adres = new NpgsqlCommand("SELECT "
                                                            + "public.places_cnt.name, "
@@ -208,7 +149,7 @@ namespace childApp
                                                            + "INNER JOIN public.places_cnt ON (places_cnt1.parent_id = public.places_cnt.plc_id) "
                                                          + "WHERE "
                                                            + "public.places_cnt.type_id = 1 AND  "
-                                                           + "public.places_cnt.name =  '" + adres[key_street]["street"] + "' AND  "
+                                                           + "public.places_cnt.name =  '" + street_name + "' AND  "
                                                            + "places_cnt1.name = '" + textBox2.Text + "' ", conn);
 
             conn.Open();
@@ -266,7 +207,7 @@ namespace childApp
 
                     conn.Close();
                     NpgsqlCommand add_new_plc = new NpgsqlCommand("INSERT INTO public.places_cnt(plc_id, district, parent_name, parent_sor, parent, name, parent_id, type_id) "
-                                              + " VALUES (" + max_id + ", '', '" + pn + "', '" + ps + "', '" + p + "', '" + textBox2.Text + "', " + adres[key_street]["id"] + ", 2)", conn);
+                                              + " VALUES (" + max_id + ", '', '" + pn + "', '" + ps + "', '" + p + "', '" + textBox2.Text + "', " + plc_id + ", 2)", conn);
                     conn.Open();
                     add_new_plc.ExecuteNonQuery();
                     conn.Close();
@@ -300,6 +241,40 @@ namespace childApp
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int ls = Convert.ToInt32(all_user.acc_code);
+            if (ls != 0)
+            {
+                int id = 0;
+                NpgsqlCommand max_id = new NpgsqlCommand("SELECT max(id) FROM counter", conn);
+                conn.Open();
+                NpgsqlDataReader read_id = max_id.ExecuteReader();
+                if (read_id.FieldCount > 0)
+                {
+                    while (read_id.Read())
+                    {
+                        if (read_id[0].ToString() != "")
+                        {
+                            id = Convert.ToInt32(read_id[0]);
+                        }
+                    }
+                }
+                id++;
+                conn.Close();
+                NpgsqlCommand add_counter = new NpgsqlCommand("insert into counter (id, acc_id, count_numb, data_close, name) values(" + id + ", " + ls + ", '" + textBox4.Text + "', '" + dateTimePicker3.Value.ToString("yyyy-MM-dd") + "', '" + textBox6.Text + "')", conn);
+                conn.Open();
+                add_counter.ExecuteReader();
+                conn.Close();
+
+                
+            }
+            else
+            {
+                MessageBox.Show("Сначала необходимо добавить лицевой счет");
+            }
         }
     }
 }
